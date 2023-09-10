@@ -1,8 +1,7 @@
 #include <Python.h>
-#include </usr/include/python3.9/pyconfig-64.h>
 
 /**
- * print_python_list_info : print infos about python lists
+ * print_python_list_info - print infos about python lists
  *
  * @p: PyObject list
  */
