@@ -1,4 +1,5 @@
 # The ``100-matrix_mul`` module
+from jsonschema._keywords import required
 ===============================
 How to 100-matrix_mul.py
 ===============================
@@ -69,7 +70,7 @@ TypeError: each row of m_b must be of the same size
 Testing m_b list of number but not correct:
 >>> matrix_mul([[2, 2, 2], [2, 2, 2]], [[1, 1], [1, 1]])
 Traceback (most recent call last):
-ValueError: m_a and m_b can't be multiplied
+ValueError: m_a and m_b cannot be multiplied
 
 Testing missing one argument:
 >>> matrix_mul([[1, 1]])
