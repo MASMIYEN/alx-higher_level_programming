@@ -1,10 +1,10 @@
 # The ``100-matrix_mul`` module
 ===============================
-How to 100-matrix_mul.py
+How to use 100-matrix_mul.py
 ===============================
 
-The module defines one function
-``matrix_mul`` multiplies 2 matrices i mean matrix*
+This module defines one function
+``matrix_mul`` multiplies 2 matrices
 
 Usage
 =====
@@ -80,3 +80,6 @@ Testing no arguments:
 >>> matrix_mul()
 Traceback (most recent call last):
 TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+
+

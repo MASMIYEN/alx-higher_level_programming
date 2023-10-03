@@ -26,7 +26,7 @@ Testing floats and negative numbers:
 array([[-3.7  , 10.5  ],
        [32.842,  5.691]])
 
-Testing
+Testing 
 
 Testing only one argument:
 >>> lazy_matrix_mul([[1, 1], [1, 1]])

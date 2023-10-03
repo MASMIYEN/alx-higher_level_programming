@@ -17,7 +17,7 @@ My name is Marouane ASMIYEN
 
 Testing no second argument:
 >>> say_my_name("Marouane")
-My name is Marouane
+My name is Marouane 
 
 Testing non-string first argument:
 >>> say_my_name(13, "ASMIYEN")
@@ -25,7 +25,7 @@ Traceback (most recent call last):
 TypeError: first_name must be a string
 
 Testing non-string second argument:
->>> say_my_name("Marouane", 69)
+>>> say_my_name("Marouane", 13)
 Traceback (most recent call last):
 TypeError: last_name must be a string
 

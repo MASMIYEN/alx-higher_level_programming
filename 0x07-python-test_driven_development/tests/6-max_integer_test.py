@@ -1,15 +1,13 @@
 #!/usr/bin/python3
-"""UUnittest for max_integer([..])
-"""
-import unittest
+"""Unittests to check max_integer()"""
 
+import unittest
 max_integer = __import__("6-max_integer").max_integer
 
 class TestMaxInteger(unittest.TestCase):
     """
     Test class defining test cases for max_integer()
     """
-
     def test_max_end(self):
         """Tests max at end"""
         test_list = [1, 2, 3, 4]
@@ -22,12 +20,12 @@ class TestMaxInteger(unittest.TestCase):
 
     def test_max_middle(self):
         """test max in the middle"""
-        test_list = [7, 8, 2, 3, 6]
-        self.assertEqual(max_integer(test_list), 8)
+        test_list = [2, 3, 5, 4, 1]
+        self.assertEqual(max_integer(test_list), 5)
 
     def test_one_negative(self):
         """tests one negative number in list"""
-        test_list = [-4, 3, 2, 1]
+        test_list = [-1, 1, 2, 3]
         self.assertEqual(max_integer(test_list), 3)
 
     def test_only_negative(self):
@@ -37,14 +35,13 @@ class TestMaxInteger(unittest.TestCase):
 
     def test_one_element(self):
         """tests list of one element"""
-        test_list = [3]
-        self.assertEqual(max_integer(test_list), 3)
+        test_list = [5]
+        self.assertEqual(max_integer(test_list), 5)
 
     def test_empty_list(self):
         """tests empty list"""
         test_list = []
         self.assertEqual(max_integer(test_list), None)
-
 
 if __name__ == '__main__':
     unittest.main()
