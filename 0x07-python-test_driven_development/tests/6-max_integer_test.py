@@ -2,12 +2,15 @@
 """Unittests to check max_integer()"""
 
 import unittest
+
 max_integer = __import__("6-max_integer").max_integer
+
 
 class TestMaxInteger(unittest.TestCase):
     """
     Test class defining test cases for max_integer()
     """
+
     def test_max_end(self):
         """Tests max at end"""
         test_list = [1, 2, 3, 4]
@@ -42,6 +45,7 @@ class TestMaxInteger(unittest.TestCase):
         """tests empty list"""
         test_list = []
         self.assertEqual(max_integer(test_list), None)
+
 
 if __name__ == '__main__':
     unittest.main()
