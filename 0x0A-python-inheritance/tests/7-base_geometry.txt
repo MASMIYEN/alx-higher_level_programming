@@ -1,0 +1,71 @@
+Doc tests for module 7-base_geometry.py
+=======================================
+
+Usage
+=====
+
+Importing module:
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Testing integer validator:
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello", 5)
+
+Testing area exception:
+>>> b = BaseGeometry()
+>>> b.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
+
+Testing non-integer value:
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello", "mam")
+Traceback (most recent call last):
+TypeError: hello must be an integer
+
+Testing negative value:
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello", -5)
+Traceback (most recent call last):
+ValueError: hello must be greater than 0
+
+Testing value zero:
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello", 0)
+Traceback (most recent call last):
+ValueError: hello must be greater than 0
+
+Testing only one argument:
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello")
+Traceback (most recent call last):
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+Testing no arguments:
+>>> b = BaseGeometry()
+>>> b.integer_validator()
+Traceback (most recent call last):
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+Testing more than 2 arguments:
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello", -5, 10)
+Traceback (most recent call last):
+TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
+Testing boolean values:
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello", True)
+
+>>> b = BaseGeometry()
+>>> b.integer_validator("hello", False)
+Traceback (most recent call last):
+ValueError: hello must be greater than 0
+
+
+Testing argument in area method:
+>>> b = BaseGeometry()
+>>> b.area(3)
+Traceback (most recent call last):
+TypeError: area() takes 1 positional argument but 2 were given
