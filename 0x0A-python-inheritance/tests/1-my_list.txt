@@ -1,0 +1,68 @@
+Test doc for module 1-my_list.py
+================================
+The module defines one public instance methode
+print_sorted(self): prints the list but sorted
+
+Usage
+=====
+
+Importing MyList class:
+>>> MyList = __import__('1-my_list').MyList
+
+Testing inheritence:
+>>> issubclass(MyList, list)
+True
+
+Testing empty List:
+>>> my_list = MyList()
+>>> my_list.print_sorted()
+[]
+
+Regular tests:
+
+>>> my_list.append(1)
+>>> my_list.append(3)
+>>> my_list.append(2)
+>>> print(my_list)
+[1, 3, 2]
+
+Testing sorted order:
+>>> my_list.print_sorted()
+[1, 2, 3]
+>>> print(my_list)
+[1, 3, 2]
+
+Testing for arguments:
+>>> my_list.print_sorted(2)
+Traceback (most recent call last):
+...
+TypeError: print_sorted() takes 1 positional argument but 2 were given
+
+
+Testing negative numbers:
+>>> my_list = MyList()
+>>> my_list.append(-1)
+>>> my_list.append(-2)
+>>> my_list.append(-3)
+>>> my_list.print_sorted()
+[-3, -2, -1]
+
+Testing reverse order:
+>>> my_list = MyList()
+>>> my_list.append(3)
+>>> my_list.append(2)
+>>> my_list.append(1)
+>>> print(my_list)
+[3, 2, 1]
+>>> my_list.print_sorted()
+[1, 2, 3]
+
+Testing negative and positive numbers:
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(-2)
+>>> my_list.append(3)
+>>> my_list.print_sorted()
+[-2, 1, 3]
+
+
