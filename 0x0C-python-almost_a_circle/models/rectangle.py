@@ -71,3 +71,8 @@ class Rectangle(Base):
         """ display rectangle values as strings"""
         str = '\n' * self.y + (' ' * self.x + '#' * self.width + '\n') * self.height
         print(str, end='')
+
+    def __str__(self):
+        """return string's info of the rectangle"""
+        return '[{}], ({}) {}/{} - {}/{}'. \
+            format(type(self).__name__, self.id, self.x, self.y, self.width, self.height)
