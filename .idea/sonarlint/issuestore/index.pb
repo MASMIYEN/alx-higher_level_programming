@@ -235,3 +235,11 @@ W
 '0x08-python-more_classes/9-rectangle.py,a/2/a2c7e7016d6d917608866523954516638e31d92a
 o
 ?0x07-python-test_driven_development/tests/6-max_integer_test.py,d/9/d9b78892c3d48e1c141540024747618e4227d496
+U
+%0x0C-python-almost_a_circle/5-main.py,6/f/6f7537bb47fbc1f3c5eab1831ed09925cb45176f
+U
+%0x0C-python-almost_a_circle/6-main.py,1/c/1c0b867c06f4c58ecf2be284af6db8c87756504c
+U
+%0x0C-python-almost_a_circle/4-main.py,d/8/d809783dcc0817553136e8616188d9910910854b
+_
+/0x0C-python-almost_a_circle/models/rectangle.py,6/7/673c06095133f2cb2564912909990ad4c9fe4c63

@@ -56,7 +56,7 @@ class Rectangle(Base):
 
     def check_int(self, name, value, is_eq=True):
         """method for checking value if int"""
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("{} must be an integer".format(name))
         if is_eq and value < 0:
             raise ValueError("{} must be >= 0".format(name))
@@ -76,3 +76,23 @@ class Rectangle(Base):
         """return string's info of the rectangle"""
         return '[{}], ({}) {}/{} - {}/{}'. \
             format(type(self).__name__, self.id, self.x, self.y, self.width, self.height)
+
+    def update(self, *args, **kwargs):
+        """update instances attributes via no-keyword and keyword args"""
+        if args:
+            self.__update(*args)
+        elif kwargs:
+            self.__update(**kwargs)
+
+    def __update(self, id=None, width=None, height=None, x=None, y=None):
+        """updates instances via */**args"""
+        if id is not None:
+            self.id = id
+        if width is not None:
+            self.width = width
+        if height is not None:
+            self.height = height
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
