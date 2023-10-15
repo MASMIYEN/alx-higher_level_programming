@@ -1,9 +1,8 @@
 #!/usr/bin/python
 """Module for the base class"""
 from json import dumps, loads
+from os import path
 import csv
-
-from pynvim import encoding
 
 
 class Base:
@@ -55,3 +54,12 @@ class Base:
             new = None
         new.update(**dictionary)
         return new
+
+    @classmethod
+    def load_from_file(cls):
+        """loads string from a file then undo JSON convert"""
+        file = "{}.json".format(cls.__name__)
+        if not path.isfile(file):
+            return []
+        with open(file, "r", encoding="utf-8") as f:
+            return [cls.create(**d) for d in cls.from_json_string(f.read())]
