@@ -41,3 +41,17 @@ class Base:
             return "[]"
         else:
             return dumps(list_dictionaries)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """loads instances from dictionary"""
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if cls is Rectangle:
+            new = Rectangle(1, 1)
+        elif cls is Square:
+            new = Square(1)
+        else:
+            new = None
+        new.update(**dictionary)
+        return new
