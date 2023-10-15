@@ -1,5 +1,7 @@
 #!/usr/bin/python
 """Module for the base class"""
+from json import dumps, loads
+import csv
 
 
 class Base:
@@ -13,3 +15,11 @@ class Base:
         else:  # increment __nb_objects and assign the new value to the public instance attribute id
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """Dictionary to JSON string method"""
+        if list_dictionaries is None or not list_dictionaries:
+            return "[]"
+        else:
+            return dumps(list_dictionaries)
