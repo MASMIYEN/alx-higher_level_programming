@@ -33,3 +33,11 @@ class Base:
             list_objs = [obj.to_dictionary() for obj in list_objs]
         with open("{}.json".format(cls.__name__), "w", encoding="utf-8") as file:
             file.write(cls.to_json_string(list_objs))
+
+    @staticmethod
+    def from_json_string(list_dictionaries):
+        """convert a dictionary to JSON"""
+        if list_dictionaries is not list_dictionaries or None:
+            return "[]"
+        else:
+            return dumps(list_dictionaries)
