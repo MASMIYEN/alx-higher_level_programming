@@ -34,12 +34,12 @@ class Base:
             file.write(cls.to_json_string(list_objs))
 
     @staticmethod
-    def from_json_string(list_dictionaries):
+    def from_json_string(json_string):
         """convert a dictionary to JSON"""
-        if list_dictionaries is not list_dictionaries or None:
+        if json_string is not json_string or None:
             return "[]"
         else:
-            return dumps(list_dictionaries)
+            return loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
@@ -62,4 +62,4 @@ class Base:
         if not path.isfile(file):
             return []
         with open(file, "r", encoding="utf-8") as f:
-            return [cls.create(**d) for d in cls.from_json_string(f.read())]
+            return [cls.create(**dictionary) for dictionary in cls.from_json_string(f.read())]
