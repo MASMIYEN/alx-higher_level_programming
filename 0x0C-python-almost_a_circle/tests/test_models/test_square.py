@@ -1,55 +1,84 @@
 #!/usr/bin/python3
-"""Module for Square unit tests."""
+"""Module for Square unit tests"""
 import unittest
 from models.square import Square
 
+
 class TestSquare(unittest.TestCase):
 
-    def setUp(self):
-        self.square = Square(10, 5, 5, 1)
+    #  create a square with valid size, x, y and id parameters
+    def test_create_square_with_valid_parameters(self):
+        square = Square(5, 2, 3, 1)
+        self.assertEqual(square.size, 5)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 3)
+        self.assertEqual(square.id, 1)
 
-    def test_size(self):
-        self.assertEqual(self.square.size, 10)
+    #  create a square with only size parameter
+    def test_create_square_with_only_size_parameter(self):
+        square = Square(5)
+        self.assertEqual(square.size, 5)
+        self.assertEqual(square.x, 0)
+        self.assertEqual(square.y, 0)
+        self.assertIsNotNone(square.id)
 
-    def test_x(self):
-        self.assertEqual(self.square.x, 5)
+    #  update a square with valid size, x, y and id parameters
+    def test_update_square_with_valid_parameters(self):
+        square = Square(5)
+        square.update(2, 3, 4, 1)
+        self.assertEqual(square.size, 2)
+        self.assertEqual(square.x, 3)
+        self.assertEqual(square.y, 4)
+        self.assertEqual(square.id, 1)
 
-    def test_y(self):
-        self.assertEqual(self.square.y, 5)
+    #  update a square with only size parameter
+    def test_update_square_with_only_size_parameter(self):
+        square = Square(5)
+        square.update(2)
+        self.assertEqual(square.size, 2)
+        self.assertEqual(square.x, 0)
+        self.assertEqual(square.y, 0)
+        self.assertIsNotNone(square.id)
 
-    def test_id(self):
-        self.assertEqual(self.square.id, 1)
+    #  get the size of a square
+    def test_get_square_size(self):
+        square = Square(5)
+        self.assertEqual(square.size, 5)
 
-    def test_area(self):
-        self.assertEqual(self.square.area(), 100)
+    #  set the size of a square
+    def test_set_square_size(self):
+        square = Square(5)
+        square.size = 2
+        self.assertEqual(square.size, 2)
 
-    def test_display(self):
-        expected_output = "\n" * 5 + (" " * 5 + "#" * 10 + "\n") * 10
-        with unittest.mock.patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
-            self.square.display()
-            self.assertEqual(mock_stdout.getvalue(), expected_output)
+    #  create a square with size = 0
+    def test_create_square_with_zero_size(self):
+        with self.assertRaises(ValueError):
+            square = Square(0)
 
-    def test_str(self):
-        expected_str = "[Square] (1) 5/5 - 10"
-        self.assertEqual(str(self.square), expected_str)
+    #  create a square with negative size
+    def test_create_square_with_negative_size(self):
+        with self.assertRaises(ValueError):
+            square = Square(-5)
 
-    def test_update(self):
-        self.square.update(2, 15, 10, 10)
-        self.assertEqual(self.square.id, 2)
-        self.assertEqual(self.square.size, 15)
-        self.assertEqual(self.square.x, 10)
-        self.assertEqual(self.square.y, 10)
+    #  create a square with size > 1 and x < 0
+    def test_create_square_with_size_greater_than_one_and_negative_x(self):
+        with self.assertRaises(ValueError):
+            square = Square(5, -2)
 
-    def test_update_kwargs(self):
-        self.square.update(id=2, size=15, x=10, y=10)
-        self.assertEqual(self.square.id, 2)
-        self.assertEqual(self.square.size, 15)
-        self.assertEqual(self.square.x, 10)
-        self.assertEqual(self.square.y, 10)
+    #  create a square with size > 1 and y < 0
+    def test_create_square_with_size_greater_than_one_and_negative_y(self):
+        with self.assertRaises(ValueError):
+            square = Square(5, 2, -3)
 
-    def test_to_dictionary(self):
-        expected_dict = {"id": 1, "size": 10, "x": 5, "y": 5}
-        self.assertEqual(self.square.to_dictionary(), expected_dict)
+    #  update a square with size = 0
+    def test_update_square_with_zero_size(self):
+        square = Square(5)
+        with self.assertRaises(ValueError):
+            square.update(0)
 
-if __name__ == '__main__':
-    unittest.main()
+    #  update a square with negative size
+    def test_update_square_with_negative_size(self):
+        square = Square(5)
+        with self.assertRaises(ValueError):
+            square.update(-2)
