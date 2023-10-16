@@ -1,109 +1,103 @@
-# 0x0C. Python - Almost a circle
+# Python - Almost a circle
 
-## Background Context
+![Circle](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/331/giphy.mp4)
 
-The AirBnB project is a big part of the Higher level curriculum. This project will help you be ready for it.
+In this project, I encapsulated skills in Python object-oriented programming by coding three connected classes to represent rectangles and squares. I wrote my own test suite using the `unittest` module to test all functionality for each class.
 
-In this project, you will review everything about Python:
+The three classes involved utilizing the following Python tools:
+* Import
+* Exceptions
+* Private attributes
+* Getter/setter
+* Class/static methods
+* Inheritance
+* File I/O
+* `args`/`kwargs`
+* JSON and CSV serialization/deserialization
+* Unittesting
 
--   Import
--   Exceptions
--   Class
--   Private attribute
--   Getter/Setter
--   Class method
--   Static method
--   Inheritance
--   Unittest
--   Read/Write file
+## Tests :heavy_check_mark:
 
-You will also learn about:
+* [tests/test_models](./tests/test_models): Folder containing the following independently-developed test files:
+  * [test_base.py](./tests/test_models/test_base.py)
+  * [test_rectangle.py](./tests/test_models/test_rectangle.py)
+  * [test_square.py](./tests/test_models/test_square.py)
 
--   `args`  and  `kwargs`
--   Serialization/Deserialization
--   JSON
+## Classes :cl:
 
-## Resources
+### Base
+Represents the "base" class for all other classes in the project. Includes:
 
-**Read or watch**:
+* Private class attribute `__nb_objects = 0`.
+* Public instance attribute `id`.
+* Class constructor `def __init__(self, id=None):`
+  * If `id` is `None`, increments `__nb_objects` and assigns its value to the public instance attribute `id`.
+  * Otherwise, sets the public instance attribute `id` to the provided `id`.
+* Static method `def to_json_string(list_dictionaries):` that returns the JSON string serialization of a list of dictionaries.
+  * If `list_dictionaries` is `None` or empty, returns the string `"[]"`.
+* Class method `def save_to_file(cls, list_objs):` that writes the JSON serialization of a list of objects to a file.
+  * The parameter `list_objs` is expected to be a list of `Base`-inherited instances.
+  * If `list_objs` is `None`, the function saves an empty list.
+  * The file is saved with the name `<cls name>.json` (ie. `Rectangle.json`)
+  * Overwrites the file if it already exists.
+* Static method `def from_json_string(json_string):` that returns a list of objects deserialized from a JSON string.
+  * The parameter `json_string` is expected to be a string representing a list of dictionaries.
+  * If `json_string` is `None` or empty, the function returns an empty list.
+* Class method `def create(cls, **dictionary):` that instantiates an object with provided attributes.
+  * Instantiates an object with the attributes given in `**dictionary`.
+* Class method `def load_from_file(cls):` that returns a list of objects instantiated from a JSON file.
+  * Reads from the JSON file `<cls name>.json` (ie. `Rectangle.json`)
+  * If the file does not exist, the function returns an empty list.
+* Class method `def save_to_file_csv(cls, list_objs):` that writes the CSV serialization of a list of objects to a file.
+  * The parameter `list_objs` is expected to be a list of `Base`-inherited instances.
+  * If `list_objs` is `None`, the function saves an empty list.
+  * The file is saved with the name `<cls name>.csv` (ie. `Rectangle.csv`)
+  * Serializes objects in the format `<id>,<width>,<height>,<x>,<y>` for `Rectangle` objects and `<id>,<size>,<x>,<y>` for `Square` objects.
+* Class method `def load_from_file_csv(cls):` that returns a list of objects instantiated from a CSV file.
+  * Reads from the CSV file `<cls name>.csv` (ie. `Rectangle.csv`)
+  * If the file does not exist, the function returns an empty list.
+* Static method `def draw(list_rectangles, list_squares):` that draws `Rectangle` and `Square` instances in a GUI window using the `turtle` module.
+  * The parameter `list_rectangles` is expected to be a list of `Rectangle` objects to print.
+  * The parameter `list_squares` is expected to be a list of `Square` objects to print.
 
--   [args/kwargs](https://intranet.alxswe.com/rltoken/7gc6UzxSL81HcuAwklUbuQ "args/kwargs")
--   [JSON encoder and decoder](https://intranet.alxswe.com/rltoken/rGVU9mt57rVURGnjK6n4_Q "JSON encoder and decoder")
--   [unittest module](https://intranet.alxswe.com/rltoken/soictNXCPE18ASL3INoeew "unittest module")
--   [Python test cheatsheet](https://intranet.alxswe.com/rltoken/uI9iskBCcNo5pc7j9Vy86A "Python test cheatsheet")
+### Rectangle
 
-## Requirements
+Represents a rectangle. Inherits from `Base` with:
 
-### Python Scripts
+* Private instance attributes `__width`, `__height`, `__x`, and `__y`.
+  * Each private instance attribute features its own getter/setter.
+* Class constructor `def __init__(self, width, height, x=0, y=0, id=None):`
+  * If either of `width`, `height`, `x`, or `y` is not an integer, raises a `TypeError` exception with the message `<attribute> must be an integer`.
+  * If either of `width` or `height` is >= 0, raises a `ValueError` exception with the message `<attribute> must be > 0`.
+  * If either of `x` or `y` is less than 0, raises a `ValueError` exception with the message `<attribute> must be >= 0`.
+* Public method `def area(self):` that returns the area of the `Rectangle` instance.
+* Public method `def display(self):` that prints the `Rectangle` instance to `stdout` using the `#` character.
+  * Prints new lines for the `y` coordinate and spaces for the `x` coordinate.
+* Overwrite of `__str__` method to print a `Rectangle` instance in the format `[Rectangle] (<id>) <x>/<y>`.
+* Public method `def update(self, *args, **kwargs):` that updates an instance of a `Rectangle` with the given attributes.
+  * `*args` must be supplied in the following order:
+    * 1st: `id`
+    * 2nd: `width`
+    * 3rd: `height`
+    * 4th: `x`
+    * 5th: `y`
+  * `**kwargs` is expected to be a double pointer to a dictionary of new key/value attributes to update the `Rectangle` with.
+  * `**kwargs` is skipped if `*args` exists.
+* Public method `def to_dictionary(self):` that returns the dictionary representation of a `Rectangle` instance.
 
--   Allowed editors:  `vi`,  `vim`,  `emacs`
--   All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
--   All your files should end with a new line
--   The first line of all your files should be exactly  `#!/usr/bin/python3`
--   A  `README.md`  file, at the root of the folder of the project, is mandatory
--   Your code should use the pycodestyle (version  `2.8.*`)
--   All your files must be executable
--   The length of your files will be tested using  `wc`
--   All your modules should be documented:  `python3 -c 'print(__import__("my_module").__doc__)'`
--   All your classes should be documented:  `python3 -c 'print(__import__("my_module").MyClass.__doc__)'`
--   All your functions (inside and outside a class) should be documented:  `python3 -c 'print(__import__("my_module").my_function.__doc__)'`  and  `python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'`
--   A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
+### Square
 
-### Python Unit Tests
+Represents a square. Inherits from `Rectangle` with:
 
--   Allowed editors:  `vi`,  `vim`,  `emacs`
--   All your files should end with a new line
--   All your test files should be inside a folder  `tests`
--   You have to use the  [unittest module](https://intranet.alxswe.com/rltoken/soictNXCPE18ASL3INoeew "unittest module")
--   All your test files should be python files (extension:  `.py`)
--   All your test files and folders should start with  `test_`
--   Your file organization in the tests folder should be the same as your project: ex: for  `models/base.py`, unit tests must be in:  `tests/test_models/test_base.py`
--   All your tests should be executed by using this command:  `python3 -m unittest discover tests`
--   You can also test file by file by using this command:  `python3 -m unittest tests/test_models/test_base.py`
--   We strongly encourage you to work together on test cases so that you don’t miss any edge case
-
-### 21. Let's draw it
-
-![enter image description here](https://github.com/MASMIYEN/alx-higher_level_programming/blob/master/0x0C-python-almost_a_circle/image_2023-10-16_082607011.png?raw=true)
-
-Update the class  `Base`  by adding the static method  `def draw(list_rectangles, list_squares):`  that opens a window and draws all the  `Rectangles`  and  `Squares`:
-
--   You must use the  [Turtle graphics module](https://intranet.alxswe.com/rltoken/d16zMqYw0c7eQje2XgFvFg "Turtle graphics module")
--   To install it:  `sudo apt-get install python3-tk`
--   To make the GUI available outside your vagrant machine, add this line in your Vagrantfile:  `config.ssh.forward_x11 = true`
--   No constraints for color, shape etc… be creative!
-
-```
-guillaume@ubuntu:~/$ cat 101-main.py
-#!/usr/bin/python3
-""" 101-main """
-from models.base import Base
-from models.rectangle import Rectangle
-from models.square import Square
-
-if __name__ == "__main__":
-
-    list_rectangles = [Rectangle(100, 40), Rectangle(90, 110, 30, 10), Rectangle(20, 25, 110, 80)]
-    list_squares = [Square(35), Square(15, 70, 50), Square(80, 30, 70)]
-
-    Base.draw(list_rectangles, list_squares)
-
-guillaume@ubuntu:~/$ ./101-main.py
-....
-
-```
-
--   Uncommented line in  `/etc/ssh/ssh_config`  that said  `# ForwardX11 no`  and change  `no`  to  `yes`.
--   Then added line  `config.ssh.forward_agent = true`  to my Vagrantfile in addition to  `config.ssh.forward_x11 = true`.
--   Halted my vm with  `vagrant halt`  and started it back up with  `vagrant up --provision`  then  `vagrant ssh`.
--   If you get an error that looks like  `/usr/bin/xauth: timeout in locking authority file /home/vagrant/.Xauthority`, then enter  `rm .Xauthority`  (you may have to  `sudo`).
--   Logout and restart the vm with  `vagrant up --provision`.
--   Test with  `xeyes`. If Xquartz is installed on the Mac OS it should open in an Xquartz window.
-
-**It is your responsibility to request a review for this task from a peer before the project’s deadline. If no peers have been reviewed, you should request a review from a TA or staff member.**
-
-**Repo:**
-
--   GitHub repository:  `alx-higher_level_programming`
--   Directory:  `0x0C-python-almost_a_circle`
--   File:  `models/base.py`
+* Class constructor `def __init__(self, size, x=0, y=0, id=None):`
+  * The `width` and `height` of the `Rectangle` superclass are assigned using the value of `size`.
+* Overwrite of `__str__` method to print a `Square` instance in the format `[Square] (<id>) <x>/<y>`.
+* Public method `def update(self, *args, **kwargs):` that updates an instance of a `Square` with the given attributes.
+  * `*args` must be supplied in the following order:
+    * 1st: `id`
+    * 2nd: `size`
+    * 3rd: `x`
+    * 4th: `y`
+  * `**kwargs` is expected to be a double pointer to a dictoinary of new key/value attributes to update the `Square` with.
+  * `**kwargs` is skipped if `*args` exists.
+* Public method `def to_dictionary(self):` that returns the dictionary representation of a `Square`.
