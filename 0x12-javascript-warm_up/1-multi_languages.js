@@ -1,7 +1,7 @@
 #!/usr/bin/node
-const cVar = 'C is fun';
-const pyVar = 'Python is coool';
-const jsVar = 'JavaScript is Amazing';
-console.log(cVar);
-console.log(pyVar);
-console.log(jsVar);
+const myVar1 = 'C is fun';
+const myVar2 = 'Python is coool';
+const myVar3 = 'JavaScript is Amazing';
+console.log(myVar1);
+console.log(myVar2);
+console.log(myVar3);
