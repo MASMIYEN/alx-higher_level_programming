@@ -16,5 +16,6 @@ if __name__ == "__main__":
 
     if response.status_code >= 400:
         print("None")
-    else:
-        print(response.json().get("id"))
+        exit()
+
+    print(response.json().get("id"))
