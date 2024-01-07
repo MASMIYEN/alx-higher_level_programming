@@ -1,11 +1,20 @@
 #!/usr/bin/python3
-"""Uses the GitHub API to display a GitHub ID based on given credentials.
+"""
+This script uses the GitHub API to display a GitHub ID based on given credentials.
+It takes two command line arguments: the GitHub username and the GitHub token.
+It uses a bearer token for authentication.
 """
 import sys
 import requests
-from requests.auth import HTTPBasicAuth
 
 if __name__ == "__main__":
-    auth = HTTPBasicAuth(sys.argv[1], sys.argv[2])
-    response = requests.get("https://api.github.com/user", auth=auth)
-    print(response.json().get("id"))
+    username = sys.argv[1]
+    token = sys.argv[2]
+    headers = {'Authorization': f'Bearer {token}'}
+
+    response = requests.get("https://api.github.com/user", headers=headers)
+
+    if response.status_code >= 400:
+        print("None")
+    else:
+        print(response.json().get("id"))
