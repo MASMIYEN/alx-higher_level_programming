@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """
-This script uses the GitHub API to display a GitHub ID based on given credentials.
-It takes two command line arguments: the GitHub username and the GitHub token.
-It uses a bearer token for authentication.
+This script uses the GitHub API to display a
+GitHub ID based on given credentials
 """
 import requests
 import sys
