@@ -1,9 +1,9 @@
 #!/usr/bin/node
 const filesys = require('fs');
 const file = process.argv[2];
-const text = process.argv[3];
 try {
-  filesys.writeFileSync(file, text, 'utf8');
+  const data = filesys.readFileSync(file, 'utf8');
+  console.log(data);
 } catch (err) {
   console.error(err);
 }
